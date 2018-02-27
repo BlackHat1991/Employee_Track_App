@@ -41,6 +41,16 @@ public class EmployeeDetailsLogController extends AbstractController {
 		return new ResponseEntity<List<EmployeeDetailsLog>>(employeeDetailsLogs, HttpStatus.OK);
     }
 	
+	@RequestMapping(value = "/allEmpLogs",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<EmployeeDetailsLog>> allEmployeeLogs(String userEmail) throws Exception {
+		User users = userRepository.findOneByEmail(userEmail);
+		List<EmployeeDetailsLog> employeeDetailsLogs = new ArrayList<EmployeeDetailsLog>();
+		employeeDetailsLogs = employeeDetailsLogService.fetchAllEmployeeLog(users);
+		return new ResponseEntity<List<EmployeeDetailsLog>>(employeeDetailsLogs, HttpStatus.OK);
+    }
+	
 	@RequestMapping(value = "/update",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,6 +62,10 @@ public class EmployeeDetailsLogController extends AbstractController {
 			 employeeDetailsLog = employeeDetailsLogService.findByEmployeeID(users);
 			 employeeDetailsLog.setCheckInOut(new Date());
 			 employeeDetailsLog.setStatus("Logged Out");
+			 
+			 users.setUpdatedDate(new Date());
+			 users.setCurrentStatus("Logged Out");
+			 userRepository.saveAndFlush(users);
 			 
 			 employeeDetailsLogRepository.save(employeeDetailsLog);
 			

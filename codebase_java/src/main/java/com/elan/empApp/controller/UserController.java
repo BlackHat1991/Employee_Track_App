@@ -20,7 +20,6 @@ import com.elan.empApp.model.EmployeeDetailsLog;
 import com.elan.empApp.model.User;
 import com.elan.empApp.repository.EmployeeDetailsLogRepository;
 import com.elan.empApp.repository.UserRepository;
-import com.elan.empApp.service.CustomerService;
 
 @Controller
 @RequestMapping("/rest/admin")
@@ -28,9 +27,6 @@ public class UserController extends AdminController{
 
 	@Inject
 	private UserRepository userRepository;
-	
-	@Inject
-	private CustomerService customerService;
 	
 	@Inject
 	EmployeeDetailsLogRepository employeeDetailsLogRepository;
@@ -79,14 +75,6 @@ public class UserController extends AdminController{
 	public ResponseEntity<User> fetchUserByUserEmail(String userEmail) throws Exception {
 		User users = userRepository.findOneByEmail(userEmail);
 		if (users != null) {
-			List<Long> customerIDs = customerService.getCustomerIds(users.getId());
-
-			UserDataViewDTO userDataViewDTO = new UserDataViewDTO();
-			userDataViewDTO.setCustList(customerIDs.toString());
-			USER_DATA.put(users.getEmail(), userDataViewDTO);
-			
-			USER_SpecificDATA.put(users.getEmail(), userDataViewDTO);
-			
 			//Saves Employee Logs
 			EmployeeDetailsLog employeeDetailsLog = new EmployeeDetailsLog();
 			
@@ -94,6 +82,10 @@ public class UserController extends AdminController{
 			employeeDetailsLog.setCheckInTime(new Date());
 			employeeDetailsLog.setStatus("Logged In");
 			employeeDetailsLog.setRole(users.getRole());
+			
+			users.setCurrentStatus("Logged In");
+			users.setUpdatedDate(new Date());
+			userRepository.saveAndFlush(users);
 			
 			employeeDetailsLogRepository.save(employeeDetailsLog);
 			

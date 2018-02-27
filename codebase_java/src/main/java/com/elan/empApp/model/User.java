@@ -52,6 +52,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
   	@Column(name = "SYSTEM_DELETE")
   	private Boolean systemDelete;
     
+    @Size(max = 250)
+    @Column(name = "CURRENT_STATUS", length = 250)
+    private String currentStatus;
+    
     public Long getId() {
         return id;
     }
@@ -106,6 +110,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
 	public void setSystemDelete(Boolean systemDelete) {
 		this.systemDelete = systemDelete;
+	}
+
+	public String getCurrentStatus() {
+		return currentStatus;
+	}
+
+	public void setCurrentStatus(String currentStatus) {
+		this.currentStatus = currentStatus;
 	}
 	
 }
