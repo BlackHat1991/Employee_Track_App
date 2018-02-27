@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html id="mySidenav" lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>IoT-Electems</title>
+
+	<meta name="description" content="IoT Based controlling and monitoring the Electronic devices. The system provides intelligent services for users and provides control with Smart Phone devices.">
+	
+	<meta name="keywords" content="Industrial Maintenance, Automate Industrial Maintenance, Online Industrial Maintenance, Preventative Maintenance, Preventative industrial maintenance, Preventive maintenance, Continuous monitoring of industrial machines, Early fault identification of industrial machines, Monitoring of industrial machine, Automation of industrial maintenance, Remote control of industrial machines, Remote monitoring of industrial plants">
+
+  
+   <!--Configured Head Tags  -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+	<link rel="manifest" href="/assets/manifest.json">
+	<meta name="msapplication-TileColor" content="#00bcd4">
+	<meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#00bcd4">
+  
+
+	<!-- base url -->
+
+	<!--<base href="/">-->
+
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/indigo-pink.css">
+	<link rel="stylesheet" href="assets/css/busy.css">
+	<script src="assets/moment.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+	<script type="text/javascript" src="assets/js/sha512.min.js"></script>
+
+	<script type="text/javascript">
+		$(function($) {
+			var addToAll = false;
+			var gallery = false;
+			var titlePosition = 'inside';
+			$(addToAll ? 'img' : 'img.fancybox').each(function() {
+				var $this = $(this);
+				var title = $this.attr('title');
+				var src = $this.attr('data-big') || $this.attr('src');
+				var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+				$this.wrap(a);
+			});
+			if (gallery)
+				$('a.fancybox').attr('rel', 'fancyboxgallery');
+			$('a.fancybox').fancybox({
+				titlePosition: titlePosition
+			});
+		});
+		$.noConflict();
+	</script>
+
+	<!-- Load the Angular Material stylesheet -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content="" />
+	<meta property="og:image" content="" />
+	<meta property="og:url" content="" />
+	<meta property="og:site_name" content="" />
+	<meta property="og:description" content="" />
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Monsterrat:400,700|Merriweather:400,300italic,700' rel='stylesheet' type='text/css'>
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="assets/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="assets/css/icomoon.css">
+	<!-- Magnific Popup-->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+	<!-- Bootstrap  -->
+	<!--<link rel="stylesheet" href="css/bootstrap.css">-->
+
+	<!-- Cards -->
+	<link rel="stylesheet" href="assets/css/cards.css">
+
+	<!-- Modernizr JS -->
+	<script src="assets/js/modernizr-2.6.2.min.js"></script>
+
+<script type="text/javascript" src="polyfills.b9fe2545666db27cb19d.bundle.js" defer></script><script type="text/javascript" src="vendor.46bd210e78ab235597dd.bundle.js" defer></script><script type="text/javascript" src="main.4d338d830ef7fefe4bfd.bundle.js" defer></script></head>
+
+<body id="appBody" class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" style="height: 601px;background-position: 0px 80px;background-attachment: inherit;">
+
+	<div id="demo" style="display:none">
+		<div class="modal" id="demo5" role="dialog" style="display:block">
+            <div class="modal-dialog" id="demo6">
+
+                <div class="modal-content" id="demo7">
+                    <app>
+                        Loading...
+                    </app>
+                </div>
+
+            </div>
+	   </div>
+
+		
+	</div>
+
+	<div id="demo3" style="display:none">
+		<appTwo>
+			Loading...
+		</appTwo>
+
+		
+	</div>
+
+	<div class="modal" id="successMail" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" onclick="cancelPopup()">&times;</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<p style="text-align: -webkit-center;font-size: 22px;margin-bottom: 0px;">
+						Thank you for submit. We will contact you.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="cancelPopup()">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+    
+    <div class="modal" id="priceModel" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                <div class="modal-header">
+					<h4 class="modal-title">Information</h4>
+				</div>
+				<div class="modal-body">
+                    <p style="text-align: -webkit-center;font-size: 22px;margin-bottom: 0px;">
+                        For better user Experience, we have enabled place order feature on web platform of desktop device.
+                        <br> Please use your desktop to place order.
+                    </p>
+                </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="cancelPricePopup()">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="demo1">
+
+
+		<nav class="fh5co-nav-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left" style="background-color: rgba(61, 93, 188, 0.98);min-height: 70px;position: fixed;margin-top: 0px;">
+			<div class="container">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo">
+                    <a href="#" class="js-fh5co-mobile-toggle fh5co-nav-toggle"><i></i></a>
+                    <a href="#">Internet of Things</a><br>
+                    <a href="#" style="font-size: 12px;">By Electem Business Solutions LLP</a>
+                </div>
+				<div class="col-lg-7 col-md-6 col-sm-6 text-center fh5co-link-wrap" style="padding-top: 12px;">
+					<ul data-offcanvass="yes">
+						<li class="active" id="home"><a href="#" onclick="closeNva()">Home</a></li>
+						<li><a href="#overview" onclick="closeNva('overview')">Overview</a></li>
+						<li><a href="#explore" onclick="closeNva('explore')">Explore</a></li>
+						<li><a href="#boarding" onclick="closeNva('boarding')">Boarding</a></li>
+						<li><a href="#price" onclick="closeNva('price')">Pricing</a></li>
+						<li><a href="#contact" onclick="closeNva('contact')">Contact us</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 text-right fh5co-link-wrap" style="padding-top: 12px;">
+					<ul class="fh5co-special" data-offcanvass="yes">
+						<li><a style="cursor:pointer;" onclick="login()">Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div id="fh5co-page" class="fh5co-offcanvass-left">
+
+			<div class="fh5co-cover fh5co-cover-style-2 js-full-height" style="padding-top:  15px;" data-stellar-background-ratio="0.5" data-next="yes">
+                <span class="scroll-btn wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+				    <a href="#">
+					   <span class="mouse"><span></span></span>
+                    </a>
+                </span>
+                <div class="fh5co-overlay"></div>
+                <div class="fh5co-cover-text" id="home">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 full-height js-full-height" style="height: 459px;">
+
+                                <div class="fh5co-cover-intro">
+                                    <div class="row text-center"  style="padding-top: 5%;">
+                                        <h1 style="margin: 0 0 10px 0;font-weight: 700;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Services we Offer</h1>
+                                    </div>
+                                    <div class="row" style="margin-top:20px;">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+                                            <ul style="margin: 0px;">
+                                            <i class="glyphicon glyphicon-ok" style="color: #21cc21;padding-right: 10px;"></i>Control of your Home Appliances</ul>
+                                            <ul style="margin: 0px;"><i class="glyphicon glyphicon-ok" style="color: #21cc21;padding-right: 10px;"></i>Preemptive maintenance of Industrial Machinaries</ul>
+											<ul style="margin: 0px;">
+                                            For more Product info please click the below links</ul>									
+											<ul style="margin: 0px;"><i class="glyphicon glyphicon-new-window" style="color: #21cc21;padding-right: 10px;"></i><a href="https://www.linkedin.com/pulse/iot-preventative-industrial-operations-maintenance-vinod-ramu/?published=t" target="_blank">IoT for Preventative Industrial Operations and Maintenance</a></ul>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-md-6 pull-right" style="width: 300px;font-size: 14px;">
+                                            <div style="text-align: center;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+                                                <div class="hidden-xs">Download our App for your Android Device
+                                                </div>
+                                                <a href="https://play.google.com/store/apps/details?id=com.electems.iot&hl=en" style="border-bottom: none;" target="_blank" rel="noopener noreferrer"><img alt="Download on Google Play" src="assets/img/google_play.png" style="margin-top: 10px; height: auto;" width="160"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="row col-xs-12 col-sm-12 col-md-12 hidden-xs hidden-sm" style="text-align: left;float: left;margin-top:20px;">
+										<div style="padding-bottom: 15px;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.1s">Please click on these videos to know our product and see an actual field test demo. It show cases prominent features and how they are work.</div>
+										<div class="col-xs-12 col-sm-12 col-md-6">
+											<div style="padding: 10px;border: solid 1px;border-radius: 10px;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+												<iframe class="col-xs-12 col-sm-12 col-md-12" width="490" height="350" src="https://www.youtube.com/embed/CkNehzvyV_U" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+												<p style="text-align: center;margin-bottom: 0px;">
+													Part 1 - Duration: 10 min
+												</p>
+											</div>
+											
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-6">
+											<div style="padding: 10px;border: solid 1px;border-radius: 10px;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+												<iframe class="col-xs-12 col-sm-12 col-md-12" width="490" height="350" src="https://www.youtube.com/embed/kmm9ensV5Tk" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+												<p style="text-align: center;margin-bottom: 0px;">
+													Part 2 - Duration: 10 min
+												</p>
+											</div>
+										</div>
+									</div>
+									
+
+                                    <div class="row col-xs-12 col-sm-12 col-md-12" style="text-align: left;float: left;margin-top:30px;">
+                                        <div style="padding-bottom: 15px;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.1s">If any of the following sounds like your need of the hour then we can help you to handle it : </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div style="padding: 10px;border: solid 1px;border-radius: 10px;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+                                                <div style="text-align: center;font-size: 14px;">
+                                                    <h3 style="margin: 0 0 10px 0;">For Industrial Purpose</h3>
+                                                    <div style="text-align:left;">
+                                                        <i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Automate monitoring of the health of various machinaries at our Plant.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Take measurements of voltage, current, temperature, pressure etc..of our machinaries at regular intervals.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Define rules based on the measured parameters that are considered to be out side the range of Normal operating conditions.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>While operating outside the normal condition, send notices to defined group of members.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>While operating outside the normal condition for a configured duration, take action.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>After a configured number of actions taken by the system, escalate the issue to a configure group of members.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Generate reports of various measuring parameters captured over period of time.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>All the features should be accessible on online.</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div style="padding: 10px;border: solid 1px;border-radius: 10px;" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+                                                <div style="text-align: center;font-size: 14px;">
+                                                    <h3 style="margin: 0 0 10px 0;">For Residential/Commerical Purpose</h3>
+                                                    <div style="text-align:left;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Switch off/on my Water Pump while I am away from home.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Access my Air Conditioner over the internet.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Control my appliance such as TV, Computer, Fan, Lights, Water heater etc...where I go.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Alert me if some one enters my premise while I am away.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Give a view access to my premises while I am away.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Send a notice to you when some one opens my door while I am away.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>Trigger Siren alarm to alert people around my premises.</b>
+                                                    </div>
+                                                    <div style="text-align:left;line-height: 18px;margin-top: 10px;">
+														<i class="glyphicon glyphicon-play-circle" style="color: #21cc21;padding-right: 10px;"></i><b>All the features should be accessible on online.</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="fh5co-content-style-6" id="overview">
+				<div class="container">
+					<div class="row text-center">
+						<div class="col-md-12">
+							<h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Platform Overview.</h2>
+							<p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">IOT based Remote Mointor Controller system has ability to control the multiple electronic devices remotely. The system provides intelligent services for users and provides control with Smart Phone devices. The system consist of three types of devices.
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".8s">
+							<a class="link-block">
+
+								<figure><img src="assets/img/DevicesList.png" alt="Image" class="img-responsive img-rounded fancybox"></figure>
+								<h3>Device List</h3>
+								<p style="text-align: justify;">
+									Following Screen lists all the devices purchased by the user. Under this screen user has been provided ability to define device Formulas (Which is required to determine the state of device i.e, device state is high or low), Escalation (Which is a Rule by which users gets notified in case of system failures) and Device Control.
+								</p>
+							</a>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+							<a class="link-block">
+								<figure><img src="assets/img/DeviceDetails.png" alt="Image" class="img-responsive img-rounded fancybox"></figure>
+								<h3>Device Details</h3>
+								<p style="text-align: justify;">
+									This screen provides a user to configure Appliances over the respective analog inputs and digital outputs (for e.g, Pin A0 - Fan And D0 - Tv). Based on the device Type user able to add 16 or 8 appliances to Analog input and 8 or 4 appliances to Digital output.
+								</p>
+							</a>
+						</div>
+						<div class="clearfix visible-sm-block"></div>
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.1s">
+							<a class="link-block">
+								<figure><img src="assets/img/DeviceControls.png" alt="Image" class="img-responsive img-rounded fancybox"></figure>
+								<h3>Device Control</h3>
+								<p style="text-align: justify;">
+									Following screen provides User to direct control over the devices. User has provided with three state of switch which is <b>Auto:</b> If this state is enabled then the control action over the appliances will be taken by the device itself in case of failures. If it is not enabled then action over the appliances will be take by the users directly by providing state <b>ON</b> or <b>OFF</b>.
+								</p>
+							</a>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.4s">
+							<a href="#" class="link-block">
+								<figure><img src="assets/img/Overrides.png" alt="Image" class="img-responsive img-rounded fancybox"></figure>
+								<h3>Shutdown</h3>
+								<p style="text-align: justify;">
+									Following screen provides User to decide the shutdown action over the device. We provide ability for the users to decide the action, if device goes in bad state. Providing with two options either not to shutdown else shutdown and let operator decide to turn it ON.
+								</p>
+							</a>
+						</div>
+
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+							<a class="link-block">
+								<figure><img src="assets/img/Escalation.png" alt="Image" class="img-responsive img-rounded fancybox"></figure>
+								<h3>Escalation</h3>
+								<p style="text-align: justify;">
+									Device Escalation provides email notification to the users based on ceratian rule provided by user, if selected device met under the Rules then email is trigrred to the selected group to taken action.
+								</p>
+							</a>
+						</div>
+
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+							<a class="link-block">
+								<figure><img src="assets/img/Group_Mail.png" alt="Image" class="img-responsive img-rounded fancybox"></figure>
+								<h3>Email Notification</h3>
+								<p style="text-align: justify;">
+								Email functionality is provided with Group Name, email and Message. Corresponding group will take action on device in case of system failures.</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="fh5co-features-style-2" id="explore" style="background-color: white;">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Why Choose Us</h2>
+							<p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-feature wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.1s">
+							<div class="fh5co-icon"><i class="icon-command"></i></div>
+							<div class="fh5co-desc">
+								<h3>Security</h3>
+								<p style="text-align: justify;">Our application is secure, intruders can not able to access without the authentication. Secured access over device is provided as password changes dynamically.</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-feature wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+							<div class="fh5co-icon"><i class="icon-eye22"></i></div>
+							<div class="fh5co-desc">
+								<h3>Instant messaging</h3>
+								<p style="text-align: justify;">Instant messaging for user to control the devices if device output bit is high. An email is triggred to users, helps the user to take immediate Action over devices in case of failures.</p>
+							</div>
+						</div>
+						<div class="clearfix visible-sm-block visible-xs-block"></div>
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-feature wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.7s">
+							<div class="fh5co-icon"><i class="icon-heart22"></i></div>
+							<div class="fh5co-desc">
+								<h3>Responsive & Mobile friendly</h3>
+								<p style="text-align: justify;">It is fully responsive and 100% mobile compatible. Works and displays flawlessly on all types of devices, including tablets and smart phones. Providing access to device control remotely.</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-feature wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
+							<div class="fh5co-icon"><i class="icon-archive22"></i></div>
+							<div class="fh5co-desc">
+								<h3>Statistics</h3>
+								<p style="text-align: justify;">User can able look at the statistics about the device for weekly, monthly, daily and yearly.</p>
+							</div>
+						</div>
+						<div class="clearfix visible-sm-block visible-xs-block"></div>
+						<div class="col-md-8 col-sm-8 col-xs-8 col-xxs-12 fh5co-feature wow fadeInUp" data-wow-duration="1s" data-wow-delay="2.6s">
+							<div class="fh5co-icon"><i class="icon-umbrella"></i></div>
+							<div class="fh5co-desc">
+								<h3>Device Support</h3>
+								<p>Following are the different set of controls our devices is be capable of supporting :</p>
+								<div class="col-md-6 col-sm-8 col-xs-12">
+									<h4 style="width: 310;">Industrial Controls (Type 2 Device):</h4>
+									<ul style="width: 310px;padding-left: 15px;">
+										<li>Temperature Measurement & Control</li>
+										<li>Voltage Measurement & Control</li>
+										<li>Current Measurement & Control</li>
+										<li>Vibration Measurement & Control</li>
+										<li>RMP Measurement & Control</li>
+										<li>Solenoid Coils Operation</li>
+										<li>Servo Control</li>
+										<li>Oil Presessure & Control</li>
+									</ul>
+								</div>
+								<div class="col-md-6 col-sm-8 col-xs-12">
+									<h4 style="width: 310;">Residential & Commerical Controls (Type 1 Device):</h4>
+									<ul style="width: 310px;padding-left: 15px;">
+										<li>Motion Sensor</li>
+										<li>Hazardous Gas Detection</li>
+										<li>Sound Detection</li>
+										<li>Light Detection & Control</li>
+										<li>Camera Module</li>
+										<li>LPG Butane Hydrogen Gas Detection & Control</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix visible-sm-block visible-xs-block"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="fh5co-project-style-2" id="boarding" style="background-color: white;">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">On Boarding Process</h2>
+							<p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="fh5co-projects">
+					<ul>
+						<li class="wow fadeInUp" style="background-image: url(assets/img/full_4.jpg);" data-wow-duration="1s" data-wow-delay="1.4s" data-stellar-background-ratio="0.5">
+							<a href="#">
+								<div class="fh5co-overlay"></div>
+								<div class="container">
+									<div class="fh5co-text">
+										<div class="fh5co-text-inner">
+											<div class="row">
+												<div class="col-md-5" style="padding-top: 25px;">
+													<h3>#1 Registration of Device in Factory</h3>
+												</div>
+												<div class="col-md-6">
+													<p style="font-size: 16px;color: white;">Device Initialization and Registration. Based on device type either 8 or 16 analog inputs are connected to the platform and 4 to 8 devices can be controlled.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="wow fadeInUp" style="background-image: url(assets/img/full_2.jpg);" data-wow-duration="1s" data-wow-delay="1.7s" data-stellar-background-ratio="0.5">
+							<a href="#">
+								<div class="fh5co-overlay"></div>
+								<div class="container">
+									<div class="fh5co-text">
+										<div class="fh5co-text-inner">
+											<div class="row">
+												<div class="col-md-5" style="padding-top: 15px;">
+													<h3>#2 Installation of Device</h3>
+												</div>
+												<div class="col-md-6">
+													<p style="font-size: 16px;color: white;">Dispatch our service engineers to your place to set controls of the device based on your requirement.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="wow fadeInUp" style="background-image: url(assets/img/full_1.jpg);" data-wow-duration="1s" data-wow-delay="2s" data-stellar-background-ratio="0.5">
+							<a href="#">
+								<div class="fh5co-overlay"></div>
+								<div class="container">
+									<div class="fh5co-text">
+										<div class="fh5co-text-inner">
+											<div class="row">
+												<div class="col-md-5" style="padding-top: 35px;">
+													<h3>#3 Customization of Device</h3>
+												</div>
+												<div class="col-md-6">
+													<p style="font-size: 16px;color: white;">The user has a control to configure the Formula for Device Output based on Analog inputs, by which state of the device is determined which is either ON/OFF and Escalation email can be configured and triggered to Group in case of failures.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+
+						<li class="wow fadeInUp" style="background-image: url(assets/img/full_1.jpg);" data-wow-duration="1s" data-wow-delay="2.3s" data-stellar-background-ratio="0.5">
+							<a href="#">
+								<div class="fh5co-overlay"></div>
+								<div class="container">
+									<div class="fh5co-text">
+										<div class="fh5co-text-inner">
+											<div class="row">
+												<div class="col-md-5" style="padding-top: 15px;">
+													<h3>#4 Monitoring State of Device</h3>
+												</div>
+												<div class="col-md-6">
+													<p style="font-size: 16px;color: white;">The continues Analog reading of each device has been monitored for every X interval of minutes, which will determine the state of the device.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+
+						<!--<li class="wow fadeInUp" style="background-image: url(assets/img/full_1.jpg);" data-wow-duration="1s" data-wow-delay="2.7s" data-stellar-background-ratio="0.5">
+							<a href="#">
+								<div class="fh5co-overlay"></div>
+								<div class="container">
+									<div class="fh5co-text">
+										<div class="fh5co-text-inner">
+											<div class="row">
+												<div class="col-md-5">
+													<h3>#5 Control Device remotely</h3>
+												</div>
+												<div class="col-md-6">
+													<p style="font-size: 16px;color: white;">User has an ability to control the Device remotely from web API or Moblie API, so that instant action can be taken at any device failures.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>-->
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="fh5co-pricing-style-2" id="price">
+				<div class="container">
+					<div class="row">
+						<div class="row">
+							<div class="col-md-6 col-md-offset-3 text-center">
+								<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Pricing Plans</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="pricing">
+							<div class="pricing-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.1s">
+								<h3 class="pricing-title">Home/Residential</h3>
+								<div class="pricing-price"><span class="pricing-currency">₹</span>850<span class="pricing-period">/ month</span></div>
+								<ul class="pricing-feature-list">
+									<li class="pricing-feature"><b>Device Type 3</b></li>
+									<li style="text-align: -webkit-auto;">- Device Intialization & Registration <b>₹4.8K</b>/device (Single Time)</li>
+									<li style="text-align: -webkit-auto;">- Each device supports 16 Appliances</li>
+									<li style="text-align: -webkit-auto;">- Access to the Platform.</li>
+									<li style="text-align: -webkit-auto;">- Support at <b>₹1500</b>/hour</li>
+								</ul>
+								<button onclick="choosePlan('Type3')" class="btn btn-success btn-outline">Choose plan</button>
+							</div>
+							<div class="pricing-item pricing-item--featured wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.4s">
+								<h3 class="pricing-title">Commercial/Industry</h3>
+								<div class="pricing-price"><span class="pricing-currency">₹</span>4800<span class="pricing-period">/ month</span></div>
+								<ul class="pricing-feature-list">
+									<li class="pricing-feature"><b>Device Type 1 or 2</b></li>
+									<li style="text-align: -webkit-auto;font-size: initial;">- Device Intialization & Registration <b>₹12K</b>/device (Single Time)</li>
+									<li style="text-align: -webkit-auto;font-size: initial;">- Each device type 1 supports 8 measurements & 8 Appliances</li>
+									<li style="text-align: -webkit-auto;font-size: initial;">- Each device type 2 supports 16 measurements & 4 Appliances</li>
+									<li style="text-align: -webkit-auto;font-size: initial;">- Will have dedicated Staff managing over the devices</li>
+									<li style="text-align: -webkit-auto;font-size: initial;">- Access to the Platform.</li>
+									<li style="text-align: -webkit-auto;font-size: initial;">- 5 hours of free support above 5 hours Support at <b>₹1500</b>/hour</li>
+								</ul>
+								<button onclick="choosePlan('Type2')" class="btn btn-success btn-lg">Choose plan</button>
+							</div>
+							<div class="pricing-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.7s">
+								<h3 class="pricing-title">Enterprise</h3>
+								<div class="pricing-price"><span class="pricing-currency">₹</span>18000<span class="pricing-period">/ month</span></div>
+								<ul class="pricing-feature-list">
+									<li class="pricing-feature"><b>Device Type 1, 2 or 3</b></li>
+									<li style="text-align: -webkit-auto;">- Device Intialization & Registration <b>₹12K</b>/device (Single Time)</li>
+									<li style="text-align: -webkit-auto;">- Multiple Location/Units Support</li>
+									<li style="text-align: -webkit-auto;">- Will have dedicated Staff managing over the devices</li>
+									<li style="text-align: -webkit-auto;">- Access to the Platform.</li>
+									<li style="text-align: -webkit-auto;">- Unlimited support</li>
+								</ul>
+								<button onclick="choosePlan('Both')" class="btn btn-success btn-outline">Choose plan</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="contact" class="fh5co-footer-style-3">
+				<div class="container">
+					<div class="row">
+						<div class="row p-b">
+							<div class="col-md-6 col-md-offset-3 text-center">
+								<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" style="color:black">Post Your Enquiries</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="row p-b">
+						<div class="contact_content">
+
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="contact_message wow fadeInLeft" data-wow-duration="1.5s">
+									<form action="" id="submitEmail">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+											<h5 id="validateName" style="display:none;color:red;font-size: 15px;padding-top: 10px;">Name required</h5>
+                                            <h5 id="nameValidate" style="display:none;color:red;font-size: 15px;padding-top: 10px;">Name is accepts only letters</h5>
+										</div>
+
+										<div class="form-group">
+											<input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+											<h5 id="validateEmail" style="display:none;color:red;font-size: 15px;padding-top: 10px;">email required</h5>
+											<h5 id="emailValidate" style="display:none;color:red;font-size: 15px;padding-top: 10px;">Email is not valid email address</h5>
+										</div>
+
+										<div class="form-group">
+											<textarea class="form-control" name="message" rows="6" id="message" placeholder="Message"></textarea>
+										</div>
+
+										<div class="message_btn text-right">
+											<input type="button" id="submit" value="Submit" class="btn btn-primary" style="color: black;">
+										</div>
+									</form>
+								</div>
+							</div>
+
+							<div class="col-sm-6 col-xs-12">
+								<div class="contact_socail_bookmark_area wow fadeInRight" data-wow-duration="1.5s">
+
+									<div class="single_contact_phone">
+										<h3>Address:</h3>
+										<span style="color: black;">No 8/1, 1st Floor, Bannerghatta Main Road, DRC post, Bangalore - 560029, Karnataka, India</span>
+									</div>
+
+									<div class="single_contact_phone">
+										<h3>Phone:</h3>
+										<span style="color: black;">001-(678)-894-9876</span>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END footer -->
+
+		</div>
+	</div>
+	<!-- END page-->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="assets/js/jquery.easing.1.3.js"></script>
+	<!-- Waypoints -->
+	<script src="assets/js/jquery.waypoints.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- Stellar -->
+	<script src="assets/js/jquery.stellar.min.js"></script>
+	<!-- countTo -->
+	<script src="assets/js/jquery.countTo.js"></script>
+	<!-- WOW -->
+	<script src="assets/js/wow.min.js"></script>
+	<script>
+		new WOW().init();
+	</script>
+	<!-- Main -->
+	<script src="assets/js/main.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			$("#submit").click(function() {
+				if (validation()) {
+					var EmailData = {
+						name: $("#name").val(),
+						email: $("#email").val(),
+						message: $("#message").val()
+					}
+					$.ajax({
+						type: "GET",
+						contentType: "application/json",
+						url: "http://31.220.7.107:8080/IOT/rest/admin/submitEmail",
+						data: {
+							name: $("#name").val(),
+							email: $("#email").val(),
+							message: $("#message").val()
+						},
+						success: function(response) {
+							document.getElementById("successMail").style.display = "block";
+							document.getElementById("name").value = '';
+							document.getElementById("email").value = '';
+							document.getElementById("message").value = '';
+                            document.getElementById("submitEmail").reset();
+						},
+						error: function(response) {
+							//alert('mail failed');
+						},
+						done: function(e) {
+							//alert('done');
+						}
+					});
+				}
+
+			});
+		});
+
+		function validation() {
+			var validationFlag = true;
+			if ($("#name").val() === null || $("#name").val() === undefined || $("#name").val() === '') {
+				document.getElementById("validateName").style.display = "block";
+				validationFlag = false;
+			} else {
+				document.getElementById("validateName").style.display = "none";
+			}
+			if ($("#email").val() === null || $("#email").val() === undefined || $("#email").val() === '') {
+				document.getElementById("validateEmail").style.display = "block";
+				validationFlag = false;
+			} else {
+				document.getElementById("validateEmail").style.display = "none";
+			}
+			if ($("#email").val()) {
+				let EMAIL_REGEXP = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$';
+				if ($("#email").val() !== '' && (!$("#email").val().match(EMAIL_REGEXP))) {
+					document.getElementById("emailValidate").style.display = "block";
+					validationFlag = false;
+				} else {
+					document.getElementById("emailValidate").style.display = "none";
+				}
+			}
+            if ($("#name").val()) {
+				let NAME_REGEXP = '[A-Za-z]$';
+				if ($("#name").val() !== '' && (!$("#name").val().match(NAME_REGEXP))) {
+					document.getElementById("nameValidate").style.display = "block";
+					validationFlag = false;
+				} else {
+					document.getElementById("nameValidate").style.display = "none";
+				}
+			}
+
+			return validationFlag;
+		}
+
+		function login() {
+            if(localStorage.getItem('loginFlag') !== 'true') {
+            //document.getElementById("demo1").style.display = "none";
+            document.getElementById("demo").style.display = "block";
+            document.getElementById("mySidenav").classList.remove('mobile-menu-expanded');
+            } else {
+                document.getElementById("demo1").style.display = "none";
+                document.getElementById("demo").style.display = "block";
+                $('#demo5').removeClass('modal');
+                $('#demo6').removeClass('modal-dialog');
+                $('#demo7').removeClass('modal-content');
+            }
+            
+		}
+
+		function cancelPopup() {
+			document.getElementById("successMail").style.display = "none";
+		}
+        
+        function cancelPricePopup() {
+			document.getElementById("priceModel").style.display = "none";
+		}
+
+		function closeNva(id) {
+			document.getElementById("mySidenav").classList.remove('mobile-menu-expanded');
+            $("a[class*='js-fh5co-mobile-toggle fh5co-nav-toggle active']").removeClass('active');
+            if(id){
+                $('html, body').animate({scrollTop:$('#'+id).offset().top});
+            }
+		}
+
+		function choosePlan(deviceType) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+                document.getElementById("priceModel").style.display = "block";
+            } else {
+                window.scroll(0, 0);
+                localStorage.setItem('deviceType', deviceType);
+                document.getElementById("demo1").style.display = "none";
+                document.getElementById("demo").style.display = "none";
+                document.getElementById("demo3").style.display = "block";
+                document.getElementById("appBody").style.background = "none";
+                document.getElementById("mySidenav").classList.remove('mobile-menu-expanded'); 
+            }
+			
+		}
+        $('ul li a').click(function(){
+            $('li').removeClass("active");
+            $(this).parent().addClass("active");
+        });
+	</script>
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'UA-111555586-1', 'auto'); 
+	</script>
+	
+	<!-- End Google Analytics -->
+
+
+
+</body>
+
+</html>
