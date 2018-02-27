@@ -1,0 +1,121 @@
+<md-list *ngIf="locationFormFlag">
+    <div *ngIf="saveError">
+            <h4 style="color:red;">
+             {{error}}
+            </h4>
+    </div>
+    <md-toolbar>
+        Location
+        <span class="app-toolbar-filler"></span>
+        <label class="btn btn-default btn-primary active" uncheckable (click)="showLocationForm('add')">
+            Add Location
+        </label>
+    </md-toolbar>
+    
+        <div style="margin-top:2%" [hidden]="allLocationList?.length < 10">
+            <select class="form-control input-sm" style="width:20%;" [(ngModel)]="filterDetails.location" (ngModelChange)="onChange($event, 'location')">
+                <option value=''>Select Location</option>
+                <option *ngFor="let list of allLocationList; let i=index">{{list.locationName}}</option>
+            </select>
+        </div>
+        <div class="col-xs-12" style="margin-top:2%" *ngIf="emptyRecords">
+            <h4 style="color:blue;text-align:center">No Records are Found</h4>
+        </div> <br>
+	
+	<div [ngBusy]="{busy: busy, message: 'Loading...'}">
+        <div class="smart-table-container">
+            <md-grid-list cols="6" rowHeight="3em" [style.background]="'lightblue'" *ngIf="allLocationList?.length > 0">
+                <md-grid-tile class="modal-title qr-header">Location</md-grid-tile>
+                <md-grid-tile class="modal-title qr-header">Address</md-grid-tile>
+                <md-grid-tile class="modal-title qr-header">Location Key</md-grid-tile>
+                <md-grid-tile class="modal-title qr-header">ZipCode</md-grid-tile>
+                <md-grid-tile class="modal-title qr-header">Country</md-grid-tile>
+                <md-grid-tile class="modal-title qr-header">Action</md-grid-tile>
+            </md-grid-list>
+            <md-grid-list cols="6" rowHeight="3em" *ngFor="let c of locationList; let i=index" style="cursor:pointer;" (click)="showLocationForm('edit', c)" [class.active]="i == selectedRow" [ngClass]="'color' + (i % 2)">
+                <md-grid-tile>{{c.locationName}}</md-grid-tile>
+                <md-grid-tile>{{c.address}}</md-grid-tile>
+                <md-grid-tile>{{c.locationKey}}</md-grid-tile>
+                <md-grid-tile>{{c.zipCode}}</md-grid-tile>
+                <md-grid-tile>{{c.country}}</md-grid-tile>
+                <md-grid-tile><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;&nbsp;
+                    <i class="fa fa-trash" style="margin-left: 11%;" aria-hidden="true" (click)="deleteConfirmation(c);$event.stopPropagation();"></i></md-grid-tile>
+            </md-grid-list>
+        </div>
+    </div>
+</md-list>
+
+<md-list *ngIf="!locationFormFlag">
+    <div *ngIf="saveError">
+        <h4 style="color:red;">
+             {{error}}
+            </h4>
+    </div>
+    <md-toolbar>
+        Location Form
+    </md-toolbar>
+    <div class="container">
+        <form style="margin-top:2%">
+            <div *ngIf="locationName.errors && (locationName.dirty || locationName.touched)" style="color:red">
+                <div [hidden]="!locationName.errors.required">
+                    Location Name is required
+                </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="!validationFlag" style="white-space: pre;" [innerHTML]="errorMessage"></div>
+            <div class="form-group">
+                <label for="code">Location Name<sup>*</sup></label>
+                <input type="text" name="locationName" required [(ngModel)]="locationDetails.locationName" class="form-control" #locationName="ngModel">
+            </div>
+            <div class="form-group">
+                <label for="description">Location Address </label>
+                <input type="text" name="locAddress" [(ngModel)]="locationDetails.address" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="type">Zip Code </label>
+                <input type="text" name="locZipcode" [(ngModel)]="locationDetails.zipCode" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="value">Location Country</label>
+                <input type="text" name="locCountry" [(ngModel)]="locationDetails.country" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="customer">Customer<sup>*</sup></label>
+                <select [(ngModel)]="selectedCustomer" class="form-control" name="customer">
+                    <option [ngValue]="null">Please choose customer...</option>
+                    <option *ngFor="let p of allCustomerList" [ngValue]="p" [attr.selected]="p.name === customer?.name ? true : null ">{{p.name}}</option>
+                </select>
+
+            </div>
+        </form>
+
+        <div class="form-group">
+            <label for="value">Customer Role<sup>*</sup></label>
+            <ss-multiselect-dropdown [options]="myOptions" id="customerRole" [(ngModel)]="optionsModel" [texts]="loactionTexts" [settings]="locationSettings" (ngModelChange)="onChangeSelect($event)"></ss-multiselect-dropdown>
+            <label for="value">CSR Role<sup>*</sup></label>
+            <ss-multiselect-dropdown [options]="myOptions2" id="csrRole" [(ngModel)]="optionsModel1" [texts]="loactionTexts" [settings]="locationSettings" (ngModelChange)="onChangeSelect($event)"></ss-multiselect-dropdown>
+        </div>
+       
+		<button class="btn btn active" md-raised-button style="text" (click)="cancel()">Cancel</button>
+        <button class="btn btn-success active" id="saveLocationButton" md-raised-button style="text" [disabled]="!locationName.valid" (click)="saveLocation(locationDetails)">Save</button>        
+
+    </div>
+</md-list>
+
+<!-- Delete Confirmation dialog-->
+<div class="modal" id="deleteLocation" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="cancelDelete()">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: -webkit-center;font-size: 22px;margin-bottom: 0px;">Are you sure you want delete <b>{{locationDetails.locationName}}</b> location?</p>
+            </div>
+            <div class="modal-footer" style="text-align: -webkit-center;">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="deleteLocation(locationDetails.id)">Yes</button><button type="button" class="btn btn-primary" data-dismiss="modal" (click)="cancelDelete()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

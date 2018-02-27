@@ -1,0 +1,32 @@
+<md-list>
+    <div [ngBusy]="{busy: loading, message: 'Loading...'}">
+        <div id="dashboard" >
+            <md-toolbar>
+                Dash Board
+                <button id="dropchange" (click)="callMethod()" style="display:none"></button>
+                <span class="app-toolbar-filler"></span>
+            </md-toolbar>
+            
+        </div>
+    
+        <!--<div id="dashboard" *ngIf="getDeviceType3() === true">
+            <md-toolbar>
+                Dash Board
+                <button id="dropchange" (click)="callMethod()" style="display:none"></button>
+            </md-toolbar>
+            <div class="smart-table-container">us
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">S.No</th>
+                            <th>Device Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tr deviceControlType3 [device]="list" [index]="i" *ngFor="let list of allDeviceList; let i=index">
+                    </tr>
+                </table>
+            </div>
+        </div>-->
+    </div>
+</md-list>
